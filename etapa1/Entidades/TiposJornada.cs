@@ -2,6 +2,6 @@ namespace CoreEscuela.Entidades
 {
     public enum TiposJornada
     {
-        Manaña, Tarde, Noche
+        Mañana, Tarde, Noche
     }
 }

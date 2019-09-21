@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CoreEscuela.Entidades;
 using static System.Console;
 
@@ -10,45 +11,47 @@ namespace etapa1
         {
             var escuela = new Escuela("Platzi Academy", 2012, TiposEscuela.Primaria,
                                         país: "Colombia", ciudad: "Bogotá");
-            escuela.Cursos = new Curso[] {
-                new Curso() { Nombre = "101" },
-                new Curso() { Nombre = "201" },
-                new Curso() { Nombre = "301" }
+
+            escuela.Cursos = new List<Curso>(){
+                new Curso() { Nombre = "101", Jornada = TiposJornada.Mañana },
+                new Curso() { Nombre = "201", Jornada = TiposJornada.Mañana },
+                new Curso() { Nombre = "301", Jornada = TiposJornada.Mañana }
             };
+
+            // adicionamos a la coleccion
+            escuela.Cursos.Add( new Curso {Nombre = "102", Jornada = TiposJornada.Tarde} );
+            escuela.Cursos.Add( new Curso {Nombre = "202", Jornada = TiposJornada.Tarde} );
+
+            var otraColección = new List<Curso>(){
+                new Curso() { Nombre = "401", Jornada = TiposJornada.Mañana },
+                new Curso() { Nombre = "501", Jornada = TiposJornada.Mañana },
+                new Curso() { Nombre = "502", Jornada = TiposJornada.Tarde }
+            };
+            // Curso tmp = new Curso{ Nombre = "101-vacacional", Jornada  = TiposJornada.Noche };
+            // adicionar un rango
+            escuela.Cursos.AddRange(otraColección);
+            // escuela.Cursos.Add(tmp);
             imprimirCursosEscuela(escuela);
+            //WriteLine("Curso.Hash" + tmp.GetHashCode());
+            Predicate<Curso> miAlgoritmo = Predicado;
+            escuela.Cursos.RemoveAll(miAlgoritmo);
+            // escuela.Cursos.Remove(tmp);
+            WriteLine("======================");
+            // quitar todos miembros de una colección
+            // otraColección.Clear();
 
-            bool rta = 10 == 10; // true
-            int cantidad = 10;
+// Como un Arreglo
+            // escuela.Cursos = new Curso[] {
+            //     new Curso() { Nombre = "101" },
+            //     new Curso() { Nombre = "201" },
+            //     new Curso() { Nombre = "301" }
+            // };
+            imprimirCursosEscuela(escuela);
+        }
 
-            if (rta == false)
-            {
-                WriteLine("Se cumplió la condición #1");
-            }
-            else if (cantidad > 15)
-            {
-                WriteLine("Se cumplió la condición #2");
-                // hago otra cosa
-            }
-            else
-            {
-                WriteLine("No cumplió la condición");
-                //Hacer otra cosa si no se cumple
-            }
-
-            if (cantidad > 5 && rta)
-            {
-                WriteLine("Se cumplió la condición #3");
-            }
-
-            if (cantidad > 5 && rta != false)
-            {
-                WriteLine("Se cumplió la condición #4");
-            }
-
-            if (cantidad > 15 || !rta)
-            {
-                WriteLine("Se cumplió la condición #5");
-            }
+        private static bool Predicado(Curso cursoobj)
+        {
+            return cursoobj.Nombre == "301";
         }
 
         private static void imprimirCursosEscuela(Escuela escuela)
