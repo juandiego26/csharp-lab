@@ -12,21 +12,23 @@ namespace CoreEscuela
     {
       var engine = new EscuelaEngine();
       engine.Inicializar();
-
       Printer.WriteTitle("BIENVENIDOS A LA ESCUELA");
-      // Printer.Beep();
-
-      imprimirCursosEscuela(engine.Escuela);
+      //Printer.Beep(10000, cantidad: 10);
+      ImpimirCursosEscuela(engine.Escuela);
+      var listaObjetos = engine.GetObjetosEscuela();
     }
-    private static void imprimirCursosEscuela(Escuela escuela)
+
+    private static void ImpimirCursosEscuela(Escuela escuela)
     {
+
       Printer.WriteTitle("Cursos de la Escuela");
+
 
       if (escuela?.Cursos != null)
       {
         foreach (var curso in escuela.Cursos)
         {
-          WriteLine($"Nombre {curso.Nombre}, Id {curso.UniqueId}");
+          WriteLine($"Nombre {curso.Nombre  }, Id  {curso.UniqueId}");
         }
       }
     }
