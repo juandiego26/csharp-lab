@@ -9,7 +9,7 @@ namespace CoreEscuela.Entidades
 
         public float Nota { get; set; }
 
-        public override string ToString()
+        public override string ToString() // sobreescrimos en metodo para formatearlo
         {
             return $"{Nota}, {Alumno.Nombre}, {Asignatura.Nombre}";
         }
