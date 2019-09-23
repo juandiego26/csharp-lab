@@ -29,7 +29,52 @@ namespace CoreEscuela
       CargarEvaluaciones();
 
     }
-    public List<ObjetoEscuelaBase> GetObjetosEscuela(
+
+// sobrecargar para no traer nada
+    public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
+        bool traeEvaluaciones = true,
+        bool traeAlumnos = true,
+        bool traeAsignaturas = true,
+        bool traeCursos = true
+      )
+    {
+      return GetObjetosEscuela(out int dummy, out dummy, out dummy, out dummy);
+    }
+// sobrecarga del metodo getObjetosEscuela solo para el conteoEvaluciones
+    public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
+        out int conteoEvaluaciones,
+        bool traeEvaluaciones = true,
+        bool traeAlumnos = true,
+        bool traeAsignaturas = true,
+        bool traeCursos = true
+      )
+    {
+      return GetObjetosEscuela(out conteoEvaluaciones, out int dummy, out dummy, out dummy);
+    }
+// sobrecarga del metodo getObjetosEscuela solo para el conteoCursos
+    public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
+        out int conteoEvaluaciones, out int conteoCursos,
+        bool traeEvaluaciones = true,
+        bool traeAlumnos = true,
+        bool traeAsignaturas = true,
+        bool traeCursos = true
+      )
+    {
+      return GetObjetosEscuela(out conteoEvaluaciones, out conteoCursos, out int dummy, out dummy);
+    }
+// sobrecarga del metodo getObjetosEscuela solo para el conteoCursos
+    public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
+        out int conteoEvaluaciones, out int conteoCursos, out int conteoAsignaturas,
+        bool traeEvaluaciones = true,
+        bool traeAlumnos = true,
+        bool traeAsignaturas = true,
+        bool traeCursos = true
+      )
+    {
+      return GetObjetosEscuela(out conteoEvaluaciones, out conteoCursos, out conteoAsignaturas, out int dummy);
+    }
+    // metodo con paramatros de salida out y con opcionales bool
+    public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela( // para listas de solo lectura
       out int conteoEvaluaciones,
       out int conteoCursos,
       out int conteoAsignaturas,
@@ -45,7 +90,7 @@ namespace CoreEscuela
       var listaObj = new List<ObjetoEscuelaBase>();
       listaObj.Add(Escuela);
 
-      if(traeCursos)
+      if (traeCursos)
         listaObj.AddRange(Escuela.Cursos);
 
       conteoCursos = Escuela.Cursos.Count;
@@ -55,9 +100,9 @@ namespace CoreEscuela
         conteoAsignaturas += curso.Asignaturas.Count;
         conteoAlumnos += curso.Alumnos.Count;
 
-        if(traeAsignaturas)
+        if (traeAsignaturas)
           listaObj.AddRange(curso.Asignaturas);
-        if(traeAlumnos)
+        if (traeAlumnos)
           listaObj.AddRange(curso.Alumnos);
         if (traeEvaluaciones)
         {
@@ -69,7 +114,7 @@ namespace CoreEscuela
         }
       }
 
-      return listaObj;
+      return listaObj.AsReadOnly();
     }
 
     #region Métodos de carga

@@ -19,12 +19,8 @@ namespace CoreEscuela
 
       int dummy = 0;
 
-      var listaObjetos = engine.GetObjetosEscuela(
-      out int conteoEvaluaciones,
-      out int conteoCursos,
-      out int conteoAsignaturas,
-      out int conteoAlumnos
-      );
+      var listaObjetos = engine.GetObjetosEscuela(); // var es lo que devuelva el método
+      // listaObjetos.Add(new Curso { Nombre = "Curso Loco"});
     }
 
 
