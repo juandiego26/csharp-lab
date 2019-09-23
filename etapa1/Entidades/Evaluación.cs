@@ -2,7 +2,7 @@ using System;
 
 namespace CoreEscuela.Entidades
 {
-    public class Evaluación:ObjetoEscuelaBase
+    public class Evaluación : ObjetoEscuelaBase // hereda de ObjetoEscuelaBase
     {
         public Alumno Alumno { get; set; }
         public Asignatura Asignatura  { get; set; }

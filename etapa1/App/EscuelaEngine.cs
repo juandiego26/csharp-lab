@@ -5,7 +5,11 @@ using CoreEscuela.Entidades;
 
 namespace CoreEscuela
 {
-  public sealed class EscuelaEngine
+  // public class dummy : EscuelaEngine // no se puede heredar de EscuelaEngine porque es sealed
+  // {
+
+  // }
+  public sealed class EscuelaEngine // sealed se puede crear instancias(objetos) de escuelaEngine
   {
     public Escuela Escuela { get; set; }
 
