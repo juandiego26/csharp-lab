@@ -29,6 +29,8 @@ namespace CoreEscuela
       }
 
       var dictmp = engine.GetDiccionarioObjetos();
+
+      engine.ImprimirDiccionario(dictmp);
     }
 
 
