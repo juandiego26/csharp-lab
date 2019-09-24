@@ -17,10 +17,18 @@ namespace CoreEscuela
       // Printer.Beep(10000, cantidad: 10);
       ImpimirCursosEscuela(engine.Escuela);
 
-      int dummy = 0;
+      // dictionary
+      Dictionary<int, string> diccionario = new Dictionary<int, string>();
 
-      var listaObjetos = engine.GetObjetosEscuela(); // var es lo que devuelva el método
-      // listaObjetos.Add(new Curso { Nombre = "Curso Loco"});
+      diccionario.Add(10, "JuanD");
+      diccionario.Add(23, "Lorem ipsum"); // asi podemos adiccionar objetos a un diccionario
+
+      foreach (var keyValPair in diccionario)
+      {
+        Console.WriteLine($" key: {keyValPair.Key} valor: {keyValPair.Value}");
+      }
+
+      var dictmp = engine.GetDiccionarioObjetos();
     }
 
 
