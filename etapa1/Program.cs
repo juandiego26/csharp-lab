@@ -11,6 +11,9 @@ namespace CoreEscuela
   {
     static void Main(string[] args)
     {
+      AppDomain.CurrentDomain.ProcessExit += AccionDelEvento;
+      AppDomain.CurrentDomain.ProcessExit += (o, s) => Printer.DrawLine(20);
+
       var engine = new EscuelaEngine(); // instancia de escuela Engine
       engine.Inicializar();
       Printer.WriteTitle("BIENVENIDOS A LA ESCUELA");
@@ -21,6 +24,7 @@ namespace CoreEscuela
       Dictionary<int, string> diccionario = new Dictionary<int, string>();
 
       diccionario.Add(10, "JuanD");
+      // throw new Exception();
       diccionario.Add(23, "Lorem ipsum"); // asi podemos adiccionar objetos a un diccionario
 
       foreach (var keyValPair in diccionario)
@@ -28,11 +32,17 @@ namespace CoreEscuela
         Console.WriteLine($" key: {keyValPair.Key} valor: {keyValPair.Value}");
       }
 
-      var dictmp = engine.GetDiccionarioObjetos();
+      var dictmp = engine.GetDiccionarioObjetos(  );
 
-      engine.ImprimirDiccionario(dictmp);
+      engine.ImprimirDiccionario(dictmp, true);
     }
 
+    private static void AccionDelEvento(object sender, EventArgs e)
+    {
+      Printer.WriteTitle("SALIENDO");
+      // Printer.Beep(3000, 1000, 3);
+      Printer.WriteTitle("SALIÓ");
+    }
 
     private static void ImpimirCursosEscuela(Escuela escuela)
     {
