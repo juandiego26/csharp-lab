@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CoreEscuela.App;
 using CoreEscuela.Entidades;
 using CoreEscuela.Util;
 using static System.Console;
@@ -17,24 +18,9 @@ namespace CoreEscuela
       var engine = new EscuelaEngine(); // instancia de escuela Engine
       engine.Inicializar();
       Printer.WriteTitle("BIENVENIDOS A LA ESCUELA");
-      // Printer.Beep(10000, cantidad: 10);
-      ImpimirCursosEscuela(engine.Escuela);
 
-      // dictionary
-      Dictionary<int, string> diccionario = new Dictionary<int, string>();
-
-      diccionario.Add(10, "JuanD");
-      // throw new Exception();
-      diccionario.Add(23, "Lorem ipsum"); // asi podemos adiccionar objetos a un diccionario
-
-      foreach (var keyValPair in diccionario)
-      {
-        Console.WriteLine($" key: {keyValPair.Key} valor: {keyValPair.Value}");
-      }
-
-      var dictmp = engine.GetDiccionarioObjetos(  );
-
-      engine.ImprimirDiccionario(dictmp, true);
+      var reporteador = new Reporteador(engine.GetDiccionarioObjetos());
+      reporteador.GetListaEvaluaciones();
     }
 
     private static void AccionDelEvento(object sender, EventArgs e)

@@ -4,7 +4,7 @@ using System.Linq;
 using CoreEscuela.Entidades;
 using CoreEscuela.Util;
 
-namespace CoreEscuela
+namespace CoreEscuela.App
 {
   // public class dummy : EscuelaEngine // no se puede heredar de EscuelaEngine porque es sealed
   // {
@@ -75,7 +75,7 @@ namespace CoreEscuela
 
       var diccionario = new Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>>();
 
-      diccionario.Add(LlaveDiccionario.Escuela, new[] { Escuela });
+      // diccionario.Add(LlaveDiccionario.Escuela, new[] { Escuela });
       diccionario.Add(LlaveDiccionario.Curso, Escuela.Cursos.Cast<ObjetoEscuelaBase>());
 
       var listTmp = new List<Evaluación>();
